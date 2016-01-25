@@ -1,0 +1,24 @@
+{
+  "name": "wp-content",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-watch": "^4.3.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "cltvocom@cltvo.com:public_html/desarrollo/edaa/.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
