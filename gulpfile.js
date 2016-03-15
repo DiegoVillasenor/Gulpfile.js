@@ -16,11 +16,13 @@ gulp.task('hello', function() {
 
 gulp.task('sass', function(){
   return gulp.src('test/scss/style.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
     .pipe(autoprefixer({
       browsers: ['last 3 versions'],
       cascade: false
     }))
+    .pipe(sourcemaps.write('../sourcemaps/scss/'))
     .pipe(gulp.dest('dest'))
     // .pipe(browserSync.reload({ stream: true }))
 });
