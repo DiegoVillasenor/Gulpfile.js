@@ -8,7 +8,9 @@
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^4.3.5"
   },
   "scripts": {
@@ -16,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "cltvocom@cltvo.com:public_html/desarrollo/edaa/.git"
+    "url": "git@github.com:DiegoVillasenor/gulpfile.git"
   },
   "keywords": [],
   "author": "",
