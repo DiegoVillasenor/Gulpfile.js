@@ -1,14 +1,36 @@
 // var JSPATH = '../themes/edaa-theme/js/',
 // 	  MAINCSS = '../themes/edaa-theme/style.css';
-
+/**
+ * Required modules
+ * @type {[]}
+ */
 var gulp = require('gulp');
-
 var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps'); //sass sourcemaps
 var autoprefixer = require('gulp-autoprefixer');
+var sassdoc = require('sassdoc');
 var watch = require('gulp-watch');
+
+
+/**
+ * Config options
+ * @type {}
+ */
+var sassdocOptions = {
+  dest: './public/sassdoc',
+  package: {
+    title: 'Mazorca',
+    name: 'Mazorca',
+    version: '0.0.3',
+    license: 'GNU',
+    homepage: 'github.com/el-cultivo/mazoroca',
+    description: 'Scss Framework'
+  }
+};
+
+
 
 gulp.task('hello', function() {
   console.log(gulp.src);
@@ -27,6 +49,14 @@ gulp.task('sass', function(){
     // .pipe(browserSync.reload({ stream: true }))
 });
 
+
+
+gulp.task('sassdoc', function () {
+  return gulp
+    .src('test/scss/style.scss')
+    .pipe(sassdoc(sassdocOptions))
+    .resume();
+});
 
 /**
  * To copy files from one place to another.
