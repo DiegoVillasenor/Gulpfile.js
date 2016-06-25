@@ -1,1 +1,1 @@
-{"version":3,"sources":["style.scss"],"names":[],"mappings":"AAAA;EACC,mBAAmB;EACnB,gBAAgB,EAChB","file":"style.css","sourcesContent":[".probando {\n\tcontent: '1, 2, 3';\n\tfont-size: 10px;\n}"],"sourceRoot":"/source/"}
+{"version":3,"sources":["style.scss"],"names":[],"mappings":"AAAA;EACC,mBAAmB;EACnB,iBAAiB;EACjB,sBAAc;EAAd,qBAAc;EAAd,cAAc,EACd","file":"style.css","sourcesContent":[".probando {\n\tcontent: '1, 2, 3';\n\tfont-size: 800px;\n\tdisplay: flex;\n}"],"sourceRoot":"/source/"}

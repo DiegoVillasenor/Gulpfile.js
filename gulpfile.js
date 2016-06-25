@@ -46,7 +46,7 @@ gulp.task('sass', function(){
     }))
     .pipe(sourcemaps.write('../sourcemaps/scss/'))
     .pipe(gulp.dest('dest'))
-    // .pipe(browserSync.reload({ stream: true }))
+    .pipe(browserSync.stream());
 });
 
 
@@ -92,17 +92,24 @@ gulp.task('copyfonts', function() {
 // });
 
 gulp.task('watch', ['browser-sync', 'sass'], function() {
-  gulp.watch('test/scss/**/*.scss', ['sass'])
-  .pipe(browserSync.stream({match: '**/*.css'})); 
+  gulp.watch('test/scss/**/*.scss', ['sass']); 
+  // browserSync.reload("**/*.css");
   // gulp.watch('*.js', ['scripts']); 
 
 });
 
 gulp.task('browser-sync', function() {
   browserSync.init(['dest/*.css'],{ //files to inject
-    proxy: "localhost:8888"
+     proxy: "localhost:8888"
   });
 });
 
-gulp.task('default', ['sass','browser-sync']);
+gulp.task('default', ['browser-sync']);
+
+
+
+
+
+
+
 

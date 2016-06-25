@@ -1,5 +1,8 @@
 .probando {
   content: '1, 2, 3';
-  font-size: 10px; }
+  font-size: 800px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
 
 /*# sourceMappingURL=../sourcemaps/scss/style.css.map */
