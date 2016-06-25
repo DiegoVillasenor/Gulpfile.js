@@ -92,16 +92,17 @@ gulp.task('copyfonts', function() {
 // });
 
 gulp.task('watch', ['browser-sync', 'sass'], function() {
-  gulp.watch('test/scss/**/*.scss', ['sass']); 
+  gulp.watch('test/scss/**/*.scss', ['sass'])
+  .pipe(browserSync.stream({match: '**/*.css'})); 
   // gulp.watch('*.js', ['scripts']); 
 
 });
 
 gulp.task('browser-sync', function() {
   browserSync.init(['dest/*.css'],{ //files to inject
-     host: "localhost",
-            port: 8888
+    proxy: "localhost:8888"
   });
 });
 
-gulp.task('default', ['browser-sync']);
+gulp.task('default', ['sass','browser-sync']);
+
