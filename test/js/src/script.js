@@ -1,6 +1,3 @@
 export var hola = function(s) {
-	var x = () => this.sexy = s;
-	console.log(s);
+	console.log(`Hola ${s}, eres super sexy!`);
 }
-
-hola('Diego');

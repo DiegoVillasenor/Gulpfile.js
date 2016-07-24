@@ -6,14 +6,22 @@
  */
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-var babel = require("gulp-babel");
-var concat = require('gulp-concat');
+var gutil = require("gulp-util");
+
+//Sass
 var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps'); //sass sourcemaps
 var autoprefixer = require('gulp-autoprefixer');
 var sassdoc = require('sassdoc');
 var watch = require('gulp-watch');
 
+//JS
+var babel = require("gulp-babel");
+var webpack = require("webpack");
+var webpackConfig = require('./webpack.config');
+var concat = require('gulp-concat');
+
+//sass and js sourcemaps
+var sourcemaps = require('gulp-sourcemaps'); 
 
 /**
  * Config options
@@ -80,6 +88,28 @@ gulp.task("scripts", function () {
     .pipe(gulp.dest("dest"));
 });
 
+
+gulp.task('webpack', function(callback) {
+  var myConfig = Object.create(webpackConfig);
+  myConfig.plugins = [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({ compress: {
+                warnings: false
+            }
+          })
+  ];
+
+  // run webpack
+  webpack(myConfig, function(err, stats) {
+    if (err) throw new gutil.PluginError('webpack', err);
+    gutil.log('[webpack]', stats.toString({
+      colors: true,
+      progress: true
+    }));
+    callback();
+  });
+});
+
 // gulp.task('stream', function () {
 //     return gulp.src(MAINCSS)
 //         .pipe(watch(MAINCSS))
@@ -94,9 +124,11 @@ gulp.task("scripts", function () {
 //     });
 // });
 
-gulp.task('watch', ['browser-sync', 'sass', 'scripts'], function() {
+gulp.task('watch', ['browser-sync', 'sass', 'webpack'], function() {
   gulp.watch('test/scss/**/*.scss', ['sass']); 
-  gulp.watch('test/js/**/*.js', ['scripts']); 
+  gulp.watch('test/js/**/*.js', ['webpack']); 
+  gulp.watch('dest/*.js', browserSync.reload); 
+
   // browserSync.reload("**/*.css");
 
 });
