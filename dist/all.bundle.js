@@ -1,0 +1,2 @@
+!function(e){function o(t){if(r[t])return r[t].exports;var n=r[t]={exports:{},id:t,loaded:!1};return e[t].call(n.exports,n,n.exports,o),n.loaded=!0,n.exports}var r={};return o.m=e,o.c=r,o.p="./dist/",o(0)}([function(e,o,r){"use strict";var t=r(1);(0,t.hola)("Diego")},function(e,o){"use strict";Object.defineProperty(o,"__esModule",{value:!0});o.hola=function(e){console.log("Hola "+e+", eres super sexy!")}}]);
+//# sourceMappingURL=all.bundle.js.map

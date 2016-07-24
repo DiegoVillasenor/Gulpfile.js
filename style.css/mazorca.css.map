@@ -1,0 +1,1 @@
+{"version":3,"sources":["mazorca.scss"],"names":[],"mappings":"AAAA;EACC,mBAAmB;EACnB,gBAAgB;EAChB,sBAAc;EAAd,qBAAc;EAAd,cAAc,EACd","file":"mazorca.css","sourcesContent":[".probando {\n\tcontent: '1, 2, 3';\n\tfont-size: 80px;\n\tdisplay: flex;\n}"],"sourceRoot":"/source/"}

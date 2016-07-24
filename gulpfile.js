@@ -40,21 +40,16 @@ var sassdocOptions = {
 };
 
 
-
-gulp.task('hello', function() {
-  console.log(gulp.src);
-});
-
 gulp.task('sass', function(){
-  return gulp.src('test/scss/style.scss')
+  return gulp.src('mazorca/theme/mazorca.scss')
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
     .pipe(autoprefixer({
       browsers: ['last 3 versions'],
       cascade: false
     }))
-    .pipe(sourcemaps.write('../sourcemaps/scss/'))
-    .pipe(gulp.dest('dest'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('.'))
     .pipe(browserSync.stream());
 });
 
@@ -62,7 +57,7 @@ gulp.task('sass', function(){
 
 gulp.task('sassdoc', function () {
   return gulp
-    .src('test/scss/style.scss')
+    .src('mazorca/theme/mazorca.scss')
     .pipe(sassdoc(sassdocOptions))
     .resume();
 });
@@ -78,16 +73,6 @@ gulp.task('copyfonts', function() {
    gulp.src('./bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
    .pipe(gulp.dest('./fonts'));
 });
- 
-gulp.task("scripts", function () {
-  return gulp.src("test/js/**/*.js")
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat("all.js"))
-    .pipe(sourcemaps.write("../sourcemaps/scss/"))
-    .pipe(gulp.dest("dest"));
-});
-
 
 gulp.task('webpack', function(callback) {
   var myConfig = Object.create(webpackConfig);
@@ -110,32 +95,16 @@ gulp.task('webpack', function(callback) {
   });
 });
 
-// gulp.task('stream', function () {
-//     return gulp.src(MAINCSS)
-//         .pipe(watch(MAINCSS))
-//         .pipe(gulp.dest(MAINCSS));
-// });
- 
-// gulp.task('callback', function (cb) {
-//     watch('css/**/*.css', function () {
-//         gulp.src('css/**/*.css')
-//             .pipe(watch('css/**/*.css'))
-//             .on('end', cb);
-//     });
-// });
 
 gulp.task('watch', ['browser-sync', 'sass', 'webpack'], function() {
-  gulp.watch('test/scss/**/*.scss', ['sass']); 
-  gulp.watch('test/js/**/*.js', ['webpack']); 
+  gulp.watch('mazorca/**/*.scss', ['sass']); 
+  gulp.watch('js/**/*.js', ['webpack']); 
   gulp.watch('dest/*.js', browserSync.reload); 
-
-  // browserSync.reload("**/*.css");
-
 });
 
 gulp.task('browser-sync', function() {
   browserSync.init(['dest/*.css'],{ //files to inject
-     proxy: "localhost:8888"
+     proxy: "localhost:8888/"
   });
 });
 

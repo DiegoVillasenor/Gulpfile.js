@@ -1,6 +1,6 @@
 module.exports = {
 	entry: {
-	  preload: './test/js/src/main.js'
+	  preload: './js/micorriza.js'
 	},
 	module: {
 	  loaders: [
@@ -15,8 +15,8 @@ module.exports = {
 	  ]
 	},
 	output: {
-		path: './dest',
-		publicPath: './dest/',
+		path: './dist/',
+		publicPath: './dist/',
 		filename: 'all.bundle.js',
 //		chunkFilename: '[id].bundle.js'
 	},
