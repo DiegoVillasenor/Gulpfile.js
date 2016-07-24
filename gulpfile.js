@@ -1,4 +1,7 @@
-var scss_path = 'mazorca/theme/',
+var watch_scss_path = 'mazorca-gulp-test',
+    main_scss_path = watch_scss_path + '/theme/',
+    main_js_path = './js-gulp-test/',
+    dist_js_path = 'dist',
     bs_path = '/Pruebas/Gulpfile/First/'
 /**
  * Required modules
@@ -18,7 +21,7 @@ var watch = require('gulp-watch');
 //JS
 var babel = require("gulp-babel");
 var webpack = require("webpack");
-var webpackConfig = require('./webpack.config');
+var webpackConfig = require('./webpack.config')(main_js_path, dist_js_path);
 var concat = require('gulp-concat');
 
 //sass and js sourcemaps
@@ -42,7 +45,7 @@ var sassdocOptions = {
 
 
 gulp.task('sass', function(){
-  return gulp.src(scss_path + 'mazorca.scss')
+  return gulp.src(main_scss_path + 'mazorca.scss')
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
     .pipe(rename("style.css"))
@@ -59,7 +62,7 @@ gulp.task('sass', function(){
 
 gulp.task('sassdoc', function () {
   return gulp
-    .src(scss_path + 'mazorca.scss')
+    .src(main_scss_path + 'mazorca.scss')
     .pipe(sassdoc(sassdocOptions))
     .resume();
 });
@@ -99,9 +102,9 @@ gulp.task('webpack', function(callback) {
 
 
 gulp.task('watch', ['browser-sync', 'sass', 'webpack'], function() {
-  gulp.watch('mazorca/**/*.scss', ['sass']); 
-  gulp.watch('js/**/*.js', ['webpack']); 
-  gulp.watch('dest/*.js', browserSync.reload); 
+  gulp.watch(watch_scss_path + '/**/*.scss', ['sass']); 
+  gulp.watch('js-gulp-test/**/*.js', ['webpack']); 
+  gulp.watch(dist_js_path + '/*.js', browserSync.reload); 
 });
 
 gulp.task('browser-sync', function() {
