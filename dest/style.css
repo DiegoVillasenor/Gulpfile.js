@@ -1,6 +1,6 @@
 .probando {
   content: '1, 2, 3';
-  font-size: 800px;
+  font-size: 80px;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex; }

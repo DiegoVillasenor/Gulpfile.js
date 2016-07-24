@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.scss"],"names":[],"mappings":"AAAA;EACC,mBAAmB;EACnB,gBAAgB,EAChB;;AAED;EACC,sBAAc;EAAd,qBAAc;EAAd,cAAc,EACd","file":"style.css","sourcesContent":[".probando {\n\tcontent: '1, 2, 3';\n\tfont-size: 10px;\n}\n\n.display {\n\tdisplay: flex;\n}"],"sourceRoot":"/source/"}
