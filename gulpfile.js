@@ -7,6 +7,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var gutil = require("gulp-util");
+var rename = require("gulp-rename");
 
 //Sass
 var sass = require('gulp-sass');
@@ -44,12 +45,13 @@ gulp.task('sass', function(){
   return gulp.src('mazorca/theme/mazorca.scss')
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
+    .pipe(rename("style.css"))
     .pipe(autoprefixer({
       browsers: ['last 3 versions'],
       cascade: false
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('.'))
+    .pipe(gulp.dest('./'))
     .pipe(browserSync.stream());
 });
 
