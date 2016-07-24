@@ -8,6 +8,7 @@ var watch_scss_path = 'mazorca-gulp-test',
  * @type {[]}
  */
 var gulp = require('gulp');
+var watch = require('gulp-watch');
 var browserSync = require('browser-sync').create();
 var gutil = require("gulp-util");
 var rename = require("gulp-rename");
@@ -16,7 +17,6 @@ var rename = require("gulp-rename");
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var sassdoc = require('sassdoc');
-var watch = require('gulp-watch');
 
 //JS
 var babel = require("gulp-babel");
@@ -32,7 +32,7 @@ var sourcemaps = require('gulp-sourcemaps');
  * @type {}
  */
 var sassdocOptions = {
-  dest: './public/sassdoc',
+  dest: './docs/sassdoc',
   package: {
     title: 'Mazorca',
     name: 'Mazorca',
@@ -42,7 +42,6 @@ var sassdocOptions = {
     description: 'Scss Framework'
   }
 };
-
 
 gulp.task('sass', function(){
   return gulp.src(main_scss_path + 'mazorca.scss')
@@ -58,25 +57,11 @@ gulp.task('sass', function(){
     .pipe(browserSync.stream());
 });
 
-
-
 gulp.task('sassdoc', function () {
   return gulp
     .src(main_scss_path + 'mazorca.scss')
     .pipe(sassdoc(sassdocOptions))
     .resume();
-});
-
-/**
- * To copy files from one place to another.
- *
- * @src http://ilikekillnerds.com/2014/07/copying-files-from-one-folder-to-another-in-gulp-js/
- * @param  {[type]} ) {              gulp.src('./bower_components/font-awesome/fonts*.{ttf,woff,eof,svg}')   .pipe(gulp.dest('./fonts'));} [description]
- * @return {[type]}   [description]
- */
-gulp.task('copyfonts', function() {
-   gulp.src('./bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
-   .pipe(gulp.dest('./fonts'));
 });
 
 gulp.task('webpack', function(callback) {
@@ -100,21 +85,18 @@ gulp.task('webpack', function(callback) {
   });
 });
 
+gulp.task('browser-sync', function() {
+  browserSync.init(['./style.css'],{ //files to inject
+     proxy: "localhost:8888" + bs_path
+  });
+});
+
 
 gulp.task('watch', ['browser-sync', 'sass', 'webpack'], function() {
   gulp.watch(watch_scss_path + '/**/*.scss', ['sass']); 
   gulp.watch('js-gulp-test/**/*.js', ['webpack']); 
   gulp.watch(dist_js_path + '/*.js', browserSync.reload); 
 });
-
-gulp.task('browser-sync', function() {
-  browserSync.init(['dest/*.css'],{ //files to inject
-     proxy: "localhost:8888" + bs_path
-  });
-});
-
-gulp.task('default', ['browser-sync']);
-
 
 
 
