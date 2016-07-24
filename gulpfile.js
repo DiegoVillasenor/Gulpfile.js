@@ -1,5 +1,5 @@
-// var JSPATH = '../themes/edaa-theme/js/',
-// 	  MAINCSS = '../themes/edaa-theme/style.css';
+var scss_path = 'mazorca/theme/',
+    bs_path = '/Pruebas/Gulpfile/First/'
 /**
  * Required modules
  * @type {[]}
@@ -42,7 +42,7 @@ var sassdocOptions = {
 
 
 gulp.task('sass', function(){
-  return gulp.src('mazorca/theme/mazorca.scss')
+  return gulp.src(scss_path + 'mazorca.scss')
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
     .pipe(rename("style.css"))
@@ -59,7 +59,7 @@ gulp.task('sass', function(){
 
 gulp.task('sassdoc', function () {
   return gulp
-    .src('mazorca/theme/mazorca.scss')
+    .src(scss_path + 'mazorca.scss')
     .pipe(sassdoc(sassdocOptions))
     .resume();
 });
@@ -106,7 +106,7 @@ gulp.task('watch', ['browser-sync', 'sass', 'webpack'], function() {
 
 gulp.task('browser-sync', function() {
   browserSync.init(['dest/*.css'],{ //files to inject
-     proxy: "localhost:8888/"
+     proxy: "localhost:8888" + bs_path
   });
 });
 
